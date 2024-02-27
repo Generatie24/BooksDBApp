@@ -80,20 +80,30 @@ namespace BooksDBApp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            BookRepo bookRepo = new BookRepo();
-            Book book = new Book();
-            book.Title = txtTitle.Text;
-            book.Author = txtAuthor.Text;
-            book.Price = decimal.Parse(txtPrice.Text);
-            book.Describe = txtDescribe.Text;
-            book.Id = int.Parse(txtId.Text);
-            book.CountryId = (int)cmbCountry.SelectedValue;
-            bookRepo.UpdateBook(book);
-            FillListBox();
+            try
+            {
+                BookRepo bookRepo = new BookRepo();
+                Book book = new Book();
+                book.Title = txtTitle.Text;
+                book.Author = txtAuthor.Text;
+                book.Price = decimal.Parse(txtPrice.Text);
+                book.Describe = txtDescribe.Text;
+                book.Id = int.Parse(txtId.Text);
+                book.CountryId = (int)cmbCountry.SelectedValue;
+                bookRepo.UpdateBook(book);
+                FillListBox();
+            }
+            catch (Exception)
+            {
+                lblError.Visible = true;
+                this.lblError.Text = "There was a problem";
+            }
+            
 
         }
         private void lstBooks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             Book book = new Book();
             book = (Book)lstBooks.SelectedItem;
             txtTitle.Text = book.Title;

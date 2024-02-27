@@ -30,7 +30,7 @@ namespace LibraryNetFramework.Model
         {
             using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
             {
-                var sql = "Select * from Book";
+                var sql = "select * from Book";
                 return connection.Query<Book>(sql).ToList();
             }
         }

@@ -43,6 +43,7 @@
             this.btnDeleteBook = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbCountry
@@ -175,11 +176,25 @@
             this.txtId.TabIndex = 19;
             this.txtId.Visible = false;
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.BackColor = System.Drawing.Color.White;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblError.Location = new System.Drawing.Point(366, 12);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(86, 31);
+            this.lblError.TabIndex = 20;
+            this.lblError.Text = "label1";
+            this.lblError.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDeleteBook);
@@ -220,6 +235,7 @@
         private System.Windows.Forms.Button btnDeleteBook;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label lblError;
     }
 }
 
