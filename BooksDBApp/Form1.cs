@@ -89,6 +89,7 @@ namespace BooksDBApp
             book.Id = int.Parse(txtId.Text);
             book.CountryId = (int)cmbCountry.SelectedValue;
             bookRepo.UpdateBook(book);
+            FillListBox();
 
         }
         private void lstBooks_SelectedIndexChanged(object sender, EventArgs e)
