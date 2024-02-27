@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using Dapper;
-using System.Data.SqlClient;
+
+using System.Linq;
+using Microsoft.Data.SqlClient;
 
 
 namespace ClassLibraryBooks.Models
@@ -16,10 +18,15 @@ namespace ClassLibraryBooks.Models
                 "VALUES(@Title, @Author, @Price, @Desribe, @CountryId)" +
                 "Select Cast(SCOPE_IDENTITY() as int)";
 
-            using (IDbConnection connection = new SqlConnection)
+            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
             {
-
+                var returnId = connection.Query<int>(sql, book).SingleOrDefault();
+                //book.Id = returnId;
+                return returnId;
             }
+
+
+
         }
     }
 }

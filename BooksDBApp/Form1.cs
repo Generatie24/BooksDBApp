@@ -1,4 +1,5 @@
-﻿using ClassLibraryBooks.Models;
+﻿
+using LibraryNetFramework.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,12 @@ namespace BooksDBApp
             book.Price = decimal.Parse(txtPrice.Text);
             book.Describe = txtDescribe.Text;
             book.CountryId = 1;
+
+            BookRepo repo = new BookRepo();
+
+            int id = repo.AddBookReturnId(book);
+
+            MessageBox.Show(id.ToString());
         }
     }
 }
