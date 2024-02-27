@@ -35,15 +35,32 @@ namespace LibraryNetFramework.Model
             }
         }
 
-        public void DeleteBookById(int id) 
+        public void DeleteBookById(int id)
         {
             using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
             {
-                connection.Execute("Delete from book where Id=@id", new { Id=id});
-                
+                connection.Execute("Delete from book where Id=@id", new { Id = id });
+
             }
         }
-       
+
+        public void UpdateBook(Book book)
+        {
+            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
+            {
+                connection.Execute("UPDATE book SET Title = @Title, Author = @Author," +
+                    "Price = @Price, Describe = @Describe, CountryId = @CountryId WHERE Id=@Id",
+                    new
+                    {
+                        Title = book.Title,
+                        Author = book.Author,
+                        Price = book.Price, 
+                        Describe = book.Describe,
+                        CountryId = book.CountryId,
+                        Id=book.Id
+                    });
+            }
+        }
 
     }
 }

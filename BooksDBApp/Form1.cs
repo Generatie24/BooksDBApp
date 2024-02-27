@@ -27,13 +27,15 @@ namespace BooksDBApp
             book.Author = txtAuthor.Text;
             book.Price = decimal.Parse(txtPrice.Text);
             book.Describe = txtDescribe.Text;
-            book.CountryId = 1;
+            book.CountryId = (int)cmbCountry.SelectedValue;
 
             BookRepo repo = new BookRepo();
 
-            int id = repo.AddBookReturnId(book);
+            repo.AddBookReturnId(book);
 
-            MessageBox.Show(id.ToString());
+            FillListBox();
+
+            //MessageBox.Show(id.ToString());
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -74,6 +76,33 @@ namespace BooksDBApp
             BookRepo bookRepo = new BookRepo();
             bookRepo.DeleteBookById(book.Id);
             FillListBox();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            BookRepo bookRepo = new BookRepo();
+            Book book = new Book();
+            book.Title = txtTitle.Text;
+            book.Author = txtAuthor.Text;
+            book.Price = decimal.Parse(txtPrice.Text);
+            book.Describe = txtDescribe.Text;
+            book.Id = int.Parse(txtId.Text);
+            book.CountryId = (int)cmbCountry.SelectedValue;
+            bookRepo.UpdateBook(book);
+
+        }
+        private void lstBooks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Book book = new Book();
+            book = (Book)lstBooks.SelectedItem;
+            txtTitle.Text = book.Title;
+            txtAuthor.Text = book.Author;
+            txtPrice.Text = book.Price.ToString();
+            txtDescribe.Text = book.Describe;
+            txtId.Text = book.Id.ToString();
+            cmbCountry.SelectedValue = book.CountryId;
+            
+           
         }
     }
 }

@@ -41,6 +41,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lstBooks = new System.Windows.Forms.ListBox();
             this.btnDeleteBook = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmbCountry
@@ -142,6 +144,7 @@
             this.lstBooks.Name = "lstBooks";
             this.lstBooks.Size = new System.Drawing.Size(405, 303);
             this.lstBooks.TabIndex = 16;
+            this.lstBooks.SelectedIndexChanged += new System.EventHandler(this.lstBooks_SelectedIndexChanged);
             // 
             // btnDeleteBook
             // 
@@ -153,11 +156,32 @@
             this.btnDeleteBook.UseVisualStyleBackColor = true;
             this.btnDeleteBook.Click += new System.EventHandler(this.btnDeleteBook_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(149, 377);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(150, 23);
+            this.btnUpdate.TabIndex = 18;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(149, 12);
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(100, 20);
+            this.txtId.TabIndex = 19;
+            this.txtId.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDeleteBook);
             this.Controls.Add(this.lstBooks);
             this.Controls.Add(this.btnAdd);
@@ -194,6 +218,8 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListBox lstBooks;
         private System.Windows.Forms.Button btnDeleteBook;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txtId;
     }
 }
 
