@@ -48,6 +48,7 @@
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookRepo.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\CountryRepo.cs" />
     <Compile Include="Model\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

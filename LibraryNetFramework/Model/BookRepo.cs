@@ -11,7 +11,7 @@ namespace LibraryNetFramework.Model
 {
     public class BookRepo
     {
-        public int AddBookReturnId(Book book)  // this method adds new record in database using stored procedure
+        public int AddBookReturnId(Book book) 
         {
 
             string sql = "INSERT INTO Book(Title, Author, Price, Describe, CountryId) " +
@@ -25,6 +25,25 @@ namespace LibraryNetFramework.Model
                 return returnId;
             }
         }
+
+        public List<Book> GetAllBooks()
+        {
+            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
+            {
+                var sql = "Select * from Book";
+                return connection.Query<Book>(sql).ToList();
+            }
+        }
+
+        public void DeleteBookById(int id) 
+        {
+            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
+            {
+                connection.Execute("Delete from book where Id=@id", new { Id=id});
+                
+            }
+        }
+       
 
     }
 }

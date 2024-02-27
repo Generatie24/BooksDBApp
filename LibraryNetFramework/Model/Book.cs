@@ -14,5 +14,10 @@ namespace LibraryNetFramework.Model
         public decimal Price { get; set; }
         public string Describe { get; set; }
         public int CountryId { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Title} {Author} {Price} {CountryId}";
+        }
     }
 }
