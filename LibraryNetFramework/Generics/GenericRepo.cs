@@ -21,29 +21,23 @@ namespace LibraryNetFramework.Generics
                 return result;
             }
         }
-        public void SaveData<T>(string slqstatement, T paramaetrs)
+        public int SaveData<T>(string slqstatement, T paramaetrs)
         {
             using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
             {
-                connection.Execute(slqstatement,paramaetrs);
-            }
-        }
-
-        public int GetLastId<T>(string slqstatement)
-        {
-            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
-            {
-                int id = connection.Execute(slqstatement);
+                int id = connection.Execute(slqstatement, paramaetrs);
                 return id;
             }
         }
-        //public int GetLastId()
-        //{
-        //    using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
-        //    {
-        //        int id = connection.ExecuteScalar<int>("SELECT CAST(SCOPE_IDENTITY() AS INT)");
-        //        return  id;
-        //    }
-        //}
+
+        public int SaveDataGetId<T>(string sqlStatement, T parameters)
+        {
+            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
+            {
+                int id = connection.QuerySingle<int>(sqlStatement, parameters);
+                return id;
+
+            }
+        }
     }
 }

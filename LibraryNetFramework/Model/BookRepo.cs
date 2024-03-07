@@ -30,13 +30,11 @@ namespace LibraryNetFramework.Model
 
             #region With generic repo
             string sql = "INSERT INTO Book(Title, Author, Price, Describe,CountryId) " +
-                 "values(@Title, @Author, @Price, @Describe, @CountryId)";
-            repo.SaveData(sql, new { book.Title, book.Author, book.Price, book.Describe, book.CountryId });
+                 "values(@Title, @Author, @Price, @Describe, @CountryId)"+
+                 "SELECT CAST(SCOPE_IDENTITY() as int)";
+            int id = repo.SaveDataGetId(sql, new { book.Title, book.Author, book.Price, book.Describe, book.CountryId });
 
-            // Voer de SCOPE_IDENTITY() query uit en krijg het resultaat
-            string sqlId = "SELECT CAST(SCOPE_IDENTITY() AS INT)";
-
-            int id = repo.GetLastId<Book>(sqlId);
+           
             return id;
 
             #endregion
