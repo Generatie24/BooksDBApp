@@ -29,5 +29,21 @@ namespace LibraryNetFramework.Generics
             }
         }
 
+        public int GetLastId<T>(string slqstatement)
+        {
+            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
+            {
+                int id = connection.Execute(slqstatement);
+                return id;
+            }
+        }
+        //public int GetLastId()
+        //{
+        //    using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
+        //    {
+        //        int id = connection.ExecuteScalar<int>("SELECT CAST(SCOPE_IDENTITY() AS INT)");
+        //        return  id;
+        //    }
+        //}
     }
 }

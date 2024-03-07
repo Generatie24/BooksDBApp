@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,10 @@ namespace BooksDBApp
 
             BookRepo repo = new BookRepo();
 
-            repo.AddBookReturnId(book);
+            int lastId = repo.AddBookReturnId(book);
+
+            
+            MessageBox.Show(lastId.ToString());
 
             FillListBox();
 
