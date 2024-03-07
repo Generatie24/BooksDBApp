@@ -6,32 +6,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using LibraryNetFramework.Generics;
 
 namespace LibraryNetFramework.Model
 {
     public class BookRepo
     {
-        public int AddBookReturnId(Book book) 
+        private GenericRepo repo = new GenericRepo();
+        public void AddBookReturnId(Book book) 
         {
+            #region Without Generic repo
+            //string sql = "INSERT INTO Book(Title, Author, Price, Describe, CountryId) " +
+            //                   "values(@Title, @Author, @Price, @Describe, @CountryId); " +
+            //                   "SELECT CAST(SCOPE_IDENTITY() as int)";
+
+            //using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
+            //{
+            //    var returnId = connection.Query<int>(sql, book).SingleOrDefault();
+            //    //book.Id = returnId;
+            //    return returnId;
+            //}
+            #endregion
 
             string sql = "INSERT INTO Book(Title, Author, Price, Describe, CountryId) " +
-                               "values(@Title, @Author, @Price, @Describe, @CountryId); " +
-                               "SELECT CAST(SCOPE_IDENTITY() as int)";
+                               "values(@Title, @Author, @Price, @Describe, @CountryId)";
+            repo.SaveData(sql, new { book.Title, book.Author, book.Price, book.Describe, book.CountryId });
 
-            using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
-            {
-                var returnId = connection.Query<int>(sql, book).SingleOrDefault();
-                //book.Id = returnId;
-                return returnId;
-            }
+
         }
 
         public List<Book> GetAllBooks()
         {
             using (IDbConnection connection = new SqlConnection(Helper.ConStr("Books")))
             {
+                #region Without Generic repo
+                //var sql = "select * from Book";
+                //return connection.Query<Book>(sql).ToList();
+                #endregion
+
+                #region With Generic Repo
                 var sql = "select * from Book";
-                return connection.Query<Book>(sql).ToList();
+                return repo.LoadData<Book, dynamic>(sql, new { });
+                #endregion
+
+
             }
         }
 

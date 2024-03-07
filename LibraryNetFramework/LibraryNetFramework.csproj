@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generics\GenericRepo.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookRepo.cs" />
     <Compile Include="Model\Country.cs" />
@@ -56,5 +57,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
